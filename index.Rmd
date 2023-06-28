@@ -1,0 +1,76 @@
+---
+title: "Racial justice and injustice"
+date: "2020/11/30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+source("scripts/summary_info.R")
+library(knitr)
+```
+
+## Intro
+
+2020 is a special year, and this year in US, policeman shot African American for almost no reason triggered people's anger again and again. This always reminds us that racial justice is a very common and serious topic in the US. In this report, we will understand racial justice more comprehensively. We will not only just have a basic concept about racial justice, but also we will know how racial justice expresses in different fields. We will achieve this by doing analysis on data sets about *COMPAS Recidivism Racial Bias*, *Unemployment Rate by Race and Ethnicity*, *Juvenile Arrests* and *US Police Shootings*.
+
+## Summary Info
+
+From the data set of inmates, we can see `r most_inmates` was the ethnicity with most inmates. Among these inmates, `r black_considered_high` were considered with a high risk level, and this is `r times` times of the numbers of white inmates who were considered with a high risk level. This wide gap between the statistics of two ethnic groups shows that black inmates might be wrongly considered as high risk because of social injustice. From the data set of juvenile arrests, we can see `r most_arrests` has the most juveniles arrested, and the main reason for that is just `r main_reason`, which seems to be unreasonable. It shows the stereotype people have to African Americans. The data set of unemployment rate also shows that African American is the group with the highest unemployment rate. From all of these data sets, we can see the seriousness of racial justice in the US.
+
+```{r, include=FALSE}
+source("scripts/Summary_table.R")
+```
+
+## Summary table
+
+Here is a summary table of the total number or frequency of charges against each race and shows the percentage of charges that were treated as a felony for each year from 2013 - 2017
+
+```{r echo=FALSE}
+kable(aggregate_table, 
+      col.names = c("Date", "Race", "Frequency", "Convicts", "Felony Percentage"))
+```
+
+Each year's frequency was listed in a decreasing way. From this approach, we can see from 2013 to 2017, African American always had the most juveniles arrested. The number of arrested juveniles of black people was always **at least 3 times** of the number of the arrested juveniles of the race with the second highest frequency. African American was also the ethnic group with the highest felony percentage.
+
+## Three charts
+
+#### Chart 1:
+
+Chart 1 shows the number of individuals involved in police shootings from 2015-2020 based on their race. The chart also shows whether the individual was aggressive, other or undetermined.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+source("scripts/Chart 1.R")
+make_chart_1(shootings)
+```
+
+1.  This chart shows that the majority of fatal police shootings involved the black, hispanic, and white people. Unsurprisingly, the majority of the victims had violent intentions and blacks had the highest percentage of aggressive intent at 67.11% followed closely by whites at 66.14%.
+2.  The difference in victims between the other 3 races (including other as one) is quite slim however the length visualisation helps realise that Asians are affected more than the Native Americans.
+
+#### Chart 2:
+
+Chart 2 is about compas dataset shows the decile scores by the number of people falls in that decile colored by different races. Decile score: 1-4 Low Recidivism Level, 5-10 Medium and High Level(or High supervision level)
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+source("scripts/Chart 2.R")
+draw_chart_2(compas)
+```
+
+1.  This chart shows that scores for Caucasian defendants were skewed toward lower-risk categories, while African-American defendants were evenly distributed across scores. Notice that all the defendants in this chart are those who had not been arrested for a new offense or who had recidivated within two years.
+2.  This chart also shows for the defendants who had not recidivated within two years, the number of African-American defendants who were categorized as the highest-risk(decile score is 10) is about the same as the number of Caucasian defendants who were categorized as the medium-risk(about score 5), or the same as the number of Hispanic or other races defendants who were categorized as the lowest-risk(about score 2.5). Notice that the number is the same but how the campas scores of recidivism are different.
+
+#### Chart 3:
+
+Chart 3 is about the Compas dataset and shows if the race will be a factor that influences the COMPAS score. When the number on the y axis is higher than 0, it means being this particular race will have more chance of being categorized as high-supervision (scored as medium or high, or \>= 5), and vice versa.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+source("scripts/Chart.R")
+draw_chart_3(compas, c("African-American", "Asian", "Caucasian",
+                          "Hispanic", "Native American", "Other"))
+```
+
+1.  This chart shows that when other variables like age or sex are controlled as the same, the race will be a factor for COMPAS scoring, and the difference for each races is significant.
+2.  From this chart, being an African-American will have the highest chance of being scored as high-risk while being Hispanic(apart from the category "Other") will have the lowest.
