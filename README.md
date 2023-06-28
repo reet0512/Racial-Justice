@@ -1,5 +1,5 @@
 # **_Statistics About Social Justice and Injustice_**
-## [Link to ShinyApps website](https://reet0512.shinyapps.io/Racial-Justice/)
+## <a href="https://reet0512.shinyapps.io/Racial-Justice/" target="_blank">Link to ShinyApps website</a>
 ---
 ## **Domain of Interest**
 - ##### _Why are you interested in this field/domain?_
